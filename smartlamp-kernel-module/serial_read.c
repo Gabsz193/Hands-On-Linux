@@ -98,7 +98,7 @@ static int usb_probe(struct usb_interface *interface, const struct usb_device_id
         return ret;
     }
 
-    // TASK 2.3: Leitura de dados periódicos enviados pelo firmware
+    // TASK 2.1.2 Leitura de dados periódicos enviados pelo firmware
     // O firmware envia RES GET_LDR Z automaticamente a cada 2 segundos
     // Descomente as linhas abaixo após implementar usb_read_serial
     // ret = usb_read_serial();
@@ -150,7 +150,7 @@ static int usb_read_serial(void) {
 
     printk(KERN_INFO "SmartLamp: Aguardando resposta do dispositivo...\n");
 
-    // TASK 2.3: Implemente a leitura de dados da porta serial
+    // TASK 2.1.2: Implemente a leitura de dados da porta serial
     //
     // IMPORTANTE: Os dados podem chegar fragmentados (byte a byte ou em blocos)
     // Você deve acumular os dados em recv_line até encontrar o caractere '\n'

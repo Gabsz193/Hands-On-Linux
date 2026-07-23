@@ -148,7 +148,7 @@ static void usb_disconnect(struct usb_interface *interface) {
 
 // Envia um comando para o dispositivo USB.
 // Esta função deve reaproveitar a implementação feita na Tarefa 2.2.
-// Em sysfs_2025.c, param >= 0 indica comando com parâmetro (ex: SET_LED 80)
+// Em sysfs.c, param >= 0 indica comando com parâmetro (ex: SET_LED 80)
 // e param < 0 indica comando sem parâmetro (ex: GET_LDR).
 // Exemplos de uso:
 // - usb_write_serial("SET_LED", 80) deve enviar "SET_LED 80\n"
@@ -158,7 +158,7 @@ static int usb_write_serial(char *cmd, int param) {
 
     printk(KERN_INFO "SmartLamp: Enviando comando: %s %d\n", cmd, param);
 
-    // TASK 2.4: adapte aqui a solução da Tarefa 2.2.
+    // TASK 2.3: adapte aqui a solução da Tarefa 2.2.
     // Dica: quando param for negativo, envie apenas "COMANDO\n".
     // Quando param for 0 ou maior, envie "COMANDO PARAMETRO\n".
     // Depois, envie o buffer pela USB usando usb_bulk_msg.
@@ -180,7 +180,7 @@ static int usb_read_serial(char *cmd) {
 
     printk(KERN_INFO "SmartLamp: Aguardando resposta para %s...\n", cmd);
 
-    // TASK 2.4: adapte aqui a solução da Tarefa 2.3.
+    // TASK 2.4: adapte aqui a solução da Tarefa 2.1.2.
     //
     // IMPORTANTE: Os dados podem chegar fragmentados (byte a byte ou em blocos)
     // Você deve acumular os dados em recv_line até encontrar o caractere '\n'
@@ -214,7 +214,7 @@ static ssize_t attr_show(struct kobject *sys_obj, struct kobj_attribute *attr, c
 
     printk(KERN_INFO "SmartLamp: Lendo %s ...\n", attr_name);
 
-    // TASK 2.4: implemente a leitura via sysfs.
+    // TASK 2.3: implemente a leitura via sysfs.
     // Use attr_name para identificar se o usuario leu led, ldr ou threshold.
     // Para cada arquivo, envie o comando GET correspondente ao firmware
     // e use usb_read_serial("GET_...") para obter o valor retornado em buff.
@@ -246,7 +246,7 @@ static ssize_t attr_store(struct kobject *sys_obj, struct kobj_attribute *attr, 
 
     printk(KERN_INFO "SmartLamp: Setando %s para %ld ...\n", attr_name, value);
 
-    // TASK 2.4: implemente a escrita via sysfs.
+    // TASK 2.3: implemente a escrita via sysfs.
     // Use attr_name para permitir escrita em led e threshold.
     // Para led, envie SET_LED com o valor recebido.
     // Para threshold, envie SET_THRESHOLD com o valor recebido.
